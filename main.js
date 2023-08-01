@@ -36,13 +36,12 @@ PFPTypeSelector.addEventListener("input", () => {
 
     if (PFPType === "cats") {
         PFPImage.src = "https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png";
-        changeFavicon("https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png");
         RandomButton.disabled = true; 
-        PFPTypeSelector.disabled = true; 
         pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
+
+        changeFavicon("https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png");    
     } else {
         RandomButton.disabled = false; 
-        PFPTypeSelector.disabled = false; 
         randomizePFP();
     }
 
@@ -120,9 +119,7 @@ function randomizePFP() {
         pfpURL = pastelColours[Math.floor(Math.random() * pastelColours.length)];
     } else if (PFPType === "custom_gradients") {
         pfpURL = gradients[Math.floor(Math.random() * gradients.length)];
-    } else if (PFPType === "cats") {
-        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
-    } 
+    }
     
     PFPImage.src = pfpURL;
     changeFavicon(pfpURL)
