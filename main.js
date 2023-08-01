@@ -36,12 +36,12 @@ PFPTypeSelector.addEventListener("input", () => {
 
     if (PFPType === "cats") {
         PFPImage.src = "https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png";
-        RandomButton.disabled = true; 
+        RandomButton.hidden = true; 
         pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
 
         changeFavicon("https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png");    
     } else {
-        RandomButton.disabled = false; 
+        RandomButton.hidden = false; 
         randomizePFP();
     }
 
