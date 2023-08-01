@@ -39,8 +39,6 @@ PFPTypeSelector.addEventListener("input", () => {
 
         WebhookNameModified = WebhookName.replaceAll(" ", "%20")
 
-        console.log(WebhookNameModified)
-
         PFPImage.src = "https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png";
         RandomButton.hidden = true; 
         pfpURL = `https://cataas.com/cat/says/${WebhookNameModified}`;
@@ -69,6 +67,7 @@ MessageInput.addEventListener("input", () => {
 SendButton.addEventListener("click", () => {
 
     if (PFPType === "cats") {
+        WebhookNameModified = WebhookName.replaceAll(" ", "%20")
         pfpURL = `https://cataas.com/cat/says/${WebhookNameModified}`;
     }
 
