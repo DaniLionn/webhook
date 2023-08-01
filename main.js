@@ -33,7 +33,7 @@ NameInput.addEventListener("change", () => {
 PFPTypeSelector.addEventListener("input", () => {
 
     PFPType = PFPTypeSelector.value;
-    
+
 })
 
 MessageInput.addEventListener("input", () => {
@@ -46,6 +46,25 @@ MessageInput.addEventListener("input", () => {
         MessageInputLabel.innerHTML = `message (${messageMaxLength - len})`;
     }
 
+})
+
+SendButton.addEventListener("click", () => {
+    const request = new XMLHttpRequest();
+    request.open("POST", WebhookURL);
+    
+    request.setRequestHeader('Content-type', 'application/json');
+    
+    const params = {
+        username: WebhookName,
+        avatar_url: pfpURL,
+        content: MessageInput.value
+    }
+    
+    request.send(JSON.stringify(params));
+})
+
+RandomButton.addEventListener("click", () => {
+    randomizePFP();
 })
 
 function randomizePFP() {
@@ -100,24 +119,5 @@ function init() {
     MessageInput.value = "";
     
 }
-
-SendButton.addEventListener("click", () => {
-    const request = new XMLHttpRequest();
-    request.open("POST", WebhookURL);
-    
-    request.setRequestHeader('Content-type', 'application/json');
-    
-    const params = {
-        username: WebhookName,
-        avatar_url: pfpURL,
-        content: MessageInput.value
-    }
-    
-    request.send(JSON.stringify(params));
-})
-
-RandomButton.addEventListener("click", () => {
-    randomizePFP();
-})
 
 window.onload = init;
