@@ -11,11 +11,17 @@ let customPFPs = ["https://better-default-discord.netlify.app/Icons/Solid-Red.pn
 
 let pfpURL
 
+let WebhookName
 let WebhookURL
 
 URLInput.addEventListener("change", () => {
     WebhookURL = URLInput.value;
     localStorage.setItem("WebhookURL", URLInput.value);
+})
+
+NameInput.addEventListener("change", () => {
+    WebhookName = NameInput.value;
+    localStorage.setItem("WebhookName", NameInput.value);
 })
 
 function randomizePFP() {
@@ -45,10 +51,11 @@ function randomizePFP() {
 function init() {
     
     WebhookURL = localStorage.getItem("WebhookURL");
-    
+    NameInput = localStorage.getItem("WebhookName");
+
     randomizePFP();
     
-    NameInput.value = "";
+    NameInput.value = NameInput;
     URLInput.value = WebhookURL;
     MessageInput.value = "";
     
