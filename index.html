@@ -47,19 +47,16 @@
              const url = new URL("")
              let file = input.files[0];
              let reader = new FileReader();
-         
+             
              pfp = url.createObjectURL(file)
-         
+             
              reader.readAsDataURL(file);
              reader.onload = function () {
                  let img = document.getElementById(target);
-                 // can also use "this.result"
                  img.src = reader.result;
                  
-         
-                 //console.log(reader.result)
              }
-         
+             
              console.log(pfp)
          }
          
@@ -67,37 +64,34 @@
              message = document.getElementById("messagebox").value;
              console.log(message)
          }
-          function sendMessage() {
+         
+         function sendMessage() {
              
-               const request = new XMLHttpRequest();
-               request.open("POST", url);
-         
-               request.setRequestHeader('Content-type', 'application/json');
-         
-               const params = {
+             const request = new XMLHttpRequest();
+             request.open("POST", url);
+             
+             request.setRequestHeader('Content-type', 'application/json');
+             
+             const params = {
                  username: name,
                  //avatar_url: pfp,
                  content: document.getElementById("messagebox").value
-               }
-         
-               request.send(JSON.stringify(params));
              }
+             
+             request.send(JSON.stringify(params));
+         }
          
-             function init() {
-         
-                
-         
-         
-             // Clear forms here
+         function init() {
+             
              document.getElementById("webhookName").value = "";
              //document.getElementById("webhookImage").value = "";
              document.getElementById("webhookURL").value = "";
              document.getElementById("messagebox").value = "";
-         
              
          }
-         window.onload = init;
          
+         window.onload = init;
+
       </script>
    </body>
 </html>
