@@ -2,6 +2,7 @@ let NameInput = document.getElementById("webhookName")
 let URLInput = document.getElementById("webhookURL")
 let MessageInput = document.getElementById("messagebox")
 let SendButton = document.getElementById("send")
+let PFPImage = document.getElementById("pfp")
 
 let WebhookName = "Webhook"
 let url = ""
@@ -13,12 +14,17 @@ let pfpURL
 
 function init() {
 
-    pfpURL = Math.round(Math.random() * pfps.length)
+    pfpURL = pfps[Math.floor(Math.random()*pfps.length)]
+
+    console.log(pfpURL)
 
     NameInput = document.getElementById("webhookName")
     URLInput = document.getElementById("webhookURL")
     MessageInput = document.getElementById("messagebox")
     SendButton = document.getElementById("send")
+    PFPImage = document.getElementById("pfp")
+
+    PFPImage.src = pfpURL
     
     NameInput.value = "";
     URLInput.value = "";
