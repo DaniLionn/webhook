@@ -34,6 +34,19 @@ PFPTypeSelector.addEventListener("input", () => {
 
     PFPType = PFPTypeSelector.value;
 
+    if (PFPType === "cats") {
+        PFPImage.src = "https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png";
+        changeFavicon("https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png");
+        RandomButton.disabled = true; 
+        PFPTypeSelector.disabled = true; 
+        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
+    } else {
+        RandomButton.disabled = false; 
+        PFPTypeSelector.disabled = false; 
+        randomizePFP();
+    }
+
+
 })
 
 MessageInput.addEventListener("input", () => {
@@ -49,6 +62,11 @@ MessageInput.addEventListener("input", () => {
 })
 
 SendButton.addEventListener("click", () => {
+
+    if (PFPType === "cats") {
+        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
+    }
+
     const request = new XMLHttpRequest();
     request.open("POST", WebhookURL);
     
@@ -67,6 +85,17 @@ RandomButton.addEventListener("click", () => {
     randomizePFP();
 })
 
+function changeFavicon(url) {
+    var favicon = document.querySelector("link[rel~='icon']");
+    if (!favicon) {
+        favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        document.head.appendChild(favicon);
+    }
+    
+    favicon.href = url;
+}
+
 function randomizePFP() {
 
     if (PFPType === "totallyRandom") {
@@ -81,7 +110,7 @@ function randomizePFP() {
             pfpURL = pastelColours[Math.floor(Math.random() * pastelColours.length)];
         } else if (randomPick === 3) {
             pfpURL = gradients[Math.floor(Math.random() * gradients.length)];
-        }
+        } 
 
     } else if (PFPType === "default") {
         pfpURL = defaultPFPs[Math.floor(Math.random() * defaultPFPs.length)];
@@ -91,20 +120,12 @@ function randomizePFP() {
         pfpURL = pastelColours[Math.floor(Math.random() * pastelColours.length)];
     } else if (PFPType === "custom_gradients") {
         pfpURL = gradients[Math.floor(Math.random() * gradients.length)];
+    } else if (PFPType === "cats") {
+        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
     } 
-
-    lastPFPURL = pfpURL
     
-    var favicon = document.querySelector("link[rel~='icon']");
-    if (!favicon) {
-        favicon = document.createElement('link');
-        favicon.rel = 'icon';
-        document.head.appendChild(favicon);
-    }
-    
-    favicon.href = pfpURL;
     PFPImage.src = pfpURL;
-    
+    changeFavicon(pfpURL)
 }
 
 function init() {
@@ -117,6 +138,7 @@ function init() {
     NameInput.value = WebhookName;
     URLInput.value = WebhookURL;
     MessageInput.value = "";
+    PFPTypeSelector.value = "totallyRandom";
     
 }
 
