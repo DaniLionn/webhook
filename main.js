@@ -7,7 +7,13 @@ let WebhookName = "Webhook"
 let url = ""
 let message = ""
 
+let pfps = ["https://danilionn.github.io/webhook/pfps/discordblue.png", "https://danilionn.github.io/webhook/pfps/discordgreen.png", "https://danilionn.github.io/webhook/pfps/discordgrey.png", "https://danilionn.github.io/webhook/pfps/discordred.png", "https://danilionn.github.io/webhook/pfps/discordyellow.png"]
+
+let pfpURL
+
 function init() {
+
+    pfpURL = Math.round(Math.random() * pfps.length)
 
     NameInput = document.getElementById("webhookName")
     URLInput = document.getElementById("webhookURL")
@@ -43,6 +49,7 @@ SendButton.addEventListener("click", () => {
     
     const params = {
         username: WebhookName,
+        avatar_url: pfpURL,
         content: document.getElementById("messagebox").value
     }
     
