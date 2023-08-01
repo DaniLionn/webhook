@@ -1,62 +1,52 @@
+let NameInput = document.getElementById("webhookName")
+let URLInput = document.getElementById("webhookURL")
+let MessageInput = document.getElementById("messagebox")
+let SendButton = document.getElementById("send")
+
 let WebhookName = "Webhook"
 let url = ""
-// let pfp = ""
 let message = ""
 
-function updateName() {
-    WebhookName = document.getElementById("webhookName").value;
-    console.log(WebhookName)
+function init() {
+
+    NameInput = document.getElementById("webhookName")
+    URLInput = document.getElementById("webhookURL")
+    MessageInput = document.getElementById("messagebox")
+    SendButton = document.getElementById("send")
+    
+    NameInput.value = "";
+    URLInput.value = "";
+    MessageInput.value = "";
+    
 }
 
-function updateURL() {
-    url = document.getElementById("webhookURL").value;
-    console.log(url)
-}
+NameInput.addEventListener("change", () => {
+    WebhookName = NameInput.value;
+    //console.log(WebhookName)
+})
 
-// function updatePreview(input, target) {
-//     const url = new URL("")
-//     let file = input.files[0];
-//     let reader = new FileReader();
-    
-//     pfp = url.createObjectURL(file)
-    
-//     reader.readAsDataURL(file);
-//     reader.onload = function () {
-//         let img = document.getElementById(target);
-//         img.src = reader.result;
-//     }
-    
-//     console.log(pfp)
-// }
+URLInput.addEventListener("change", () => {
+    url = URLInput.value;
+    //console.log(url)
+})
 
-function updateMessage() {
-    message = document.getElementById("messagebox").value;
-    console.log(message)
-}
+MessageInput.addEventListener("change", () => {
+    message = MessageInput.value;
+    //console.log(message)
+})
 
-function sendMessage() {
-    
+SendButton.addEventListener("click", () => {
     const request = new XMLHttpRequest();
     request.open("POST", url);
     
     request.setRequestHeader('Content-type', 'application/json');
     
     const params = {
-        username: name,
-        //avatar_url: pfp,
+        username: WebhookName,
         content: document.getElementById("messagebox").value
     }
     
     request.send(JSON.stringify(params));
-}
-
-function init() {
-    
-    document.getElementById("webhookName").value = "";
-    //document.getElementById("webhookImage").value = "";
-    document.getElementById("webhookURL").value = "";
-    document.getElementById("messagebox").value = "";
-    
-}
+})
 
 window.onload = init;
