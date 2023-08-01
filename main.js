@@ -13,8 +13,9 @@ let pastelColours = ["https://better-default-discord.netlify.app/Icons/Pastel-Re
 let gradients = ["https://better-default-discord.netlify.app/Icons/Gradient-Red.png", "https://better-default-discord.netlify.app/Icons/Gradient-Orange.png", "https://better-default-discord.netlify.app/Icons/Gradient-Yellow.png", "https://better-default-discord.netlify.app/Icons/Gradient-Green.png", "https://better-default-discord.netlify.app/Icons/Gradient-Indigo.png", "https://better-default-discord.netlify.app/Icons/Gradient-Blue.png", "https://better-default-discord.netlify.app/Icons/Gradient-Violet.png", "https://better-default-discord.netlify.app/Icons/Gradient-Pink.png", "https://better-default-discord.netlify.app/Icons/Gradient-Black.png", "https://better-default-discord.netlify.app/Icons/Gradient-Gray.png"]
 
 let pfpURL
-let WebhookName
+let WebhookName = ""
 let WebhookURL
+let WebhookNameModified = ""
 let PFPType = "totallyRandom"
 
 let messageMaxLength = 2000;
@@ -35,9 +36,14 @@ PFPTypeSelector.addEventListener("input", () => {
     PFPType = PFPTypeSelector.value;
 
     if (PFPType === "cats") {
+
+        WebhookNameModified = WebhookName.replaceAll(" ", "%20")
+
+        console.log(WebhookNameModified)
+
         PFPImage.src = "https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png";
         RandomButton.hidden = true; 
-        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
+        pfpURL = `https://cataas.com/cat/says/${WebhookNameModified}`;
 
         changeFavicon("https://danilionn.github.io/danis-bot-website/assets/images/unavaliable.png");    
     } else {
@@ -63,7 +69,7 @@ MessageInput.addEventListener("input", () => {
 SendButton.addEventListener("click", () => {
 
     if (PFPType === "cats") {
-        pfpURL = `https://cataas.com/cat/says/${WebhookName}`;
+        pfpURL = `https://cataas.com/cat/says/${WebhookNameModified}`;
     }
 
     const request = new XMLHttpRequest();
