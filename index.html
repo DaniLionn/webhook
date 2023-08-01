@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>webhook</title>
+
+</head>
+
+<body>
+
+    <div>
+
+        <div>
+            <label for="webhookName">webhook name</label>
+            <input type="text" id="webhookName" name="webhookName" onchange="updateName()"> 
+        </div>
+        <!-- <div>
+            <label for="webhookImage">webhook pfp</label>
+            <input type="file" id="webhookImage" name="webhookImageFile" accept="image/*" onchange="updatePreview(this, 'image-preview')">
+            <img id="image-preview" width="80px" height="80px"
+            src=""></img>
+        </div> -->
+
+        <div>
+            <label for="webhookURL">webhook URL</label>
+            <input type="text" id="webhookURL" name="webhookURL" onchange="updateURL()"> 
+        </div>
+        
+        
+        
+
+
+    </div>
+
+    <div>
+        <label for="messagebox">message</label>
+        <input type="text" id="messagebox" name="messagebox"> 
+
+    </div>
+
+    <div>
+
+        <button id="send" onclick="discord_message()">Send Message</button>
+
+    </div>
+
+<script>
+
+let name = "Webhook"
+let url = ""
+let pfp = "https://danilionn.github.io/danis-bot-website/assets/images/discordprofilepictures.jpg"
+let message = ""
+
+function updateName() {
+    name = document.getElementById("webhookName").value;
+    console.log(name)
+}
+
+function updateURL() {
+    url = document.getElementById("webhookURL").value;
+    console.log(url)
+}
+
+// function updatePreview(input, target) {
+//     let file = input.files[0];
+//     let reader = new FileReader();
+
+//     reader.readAsDataURL(file);
+//     reader.onload = function () {
+//         let img = document.getElementById(target);
+//         // can also use "this.result"
+//         img.src = reader.result;
+//         pfp = reader.result
+//     }
+
+//     console.log(pfp)
+// }
+
+function updateMessage() {
+    message = document.getElementById("messagebox").value;
+    console.log(message)
+}
+
+function discord_message() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            'content': message,
+            'username': name,
+            // 'avatar_url': pfp,
+        }));
+    }
+
+</script>
+
+</body>
+
+</html>
