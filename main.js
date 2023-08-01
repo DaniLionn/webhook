@@ -33,7 +33,7 @@ NameInput.addEventListener("change", () => {
 PFPTypeSelector.addEventListener("input", () => {
 
     PFPType = PFPTypeSelector.value;
-
+    
 })
 
 MessageInput.addEventListener("input", () => {
@@ -49,10 +49,10 @@ MessageInput.addEventListener("input", () => {
 })
 
 function randomizePFP() {
-    
-    let randomPick = Math.floor(Math.random() * 4)
-    
+
     if (PFPType === "totallyRandom") {
+
+        let randomPick = Math.floor(Math.random() * 4)
 
         if (randomPick === 0) {
             pfpURL = defaultPFPs[Math.floor(Math.random() * defaultPFPs.length)];
@@ -63,6 +63,7 @@ function randomizePFP() {
         } else if (randomPick === 3) {
             pfpURL = gradients[Math.floor(Math.random() * gradients.length)];
         }
+
     } else if (PFPType === "default") {
         pfpURL = defaultPFPs[Math.floor(Math.random() * defaultPFPs.length)];
     } else if (PFPType === "custom_solidColours") {
