@@ -51,11 +51,11 @@ function randomizePFP() {
 function init() {
     
     WebhookURL = localStorage.getItem("WebhookURL");
-    NameInput = localStorage.getItem("WebhookName");
+    WebhookName = localStorage.getItem("WebhookName");
 
     randomizePFP();
     
-    NameInput.value = NameInput;
+    NameInput.value = WebhookName;
     URLInput.value = WebhookURL;
     MessageInput.value = "";
     
@@ -68,7 +68,7 @@ SendButton.addEventListener("click", () => {
     request.setRequestHeader('Content-type', 'application/json');
     
     const params = {
-        username: NameInput.value,
+        username: WebhookName,
         avatar_url: pfpURL,
         content: MessageInput.value
     }
