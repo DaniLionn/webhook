@@ -1,18 +1,20 @@
 let NameInput = document.getElementById("webhookName")
 let URLInput = document.getElementById("webhookURL")
 let MessageInput = document.getElementById("messagebox")
+let MessageInputLabel = document.getElementById("messageboxLabel")
 let SendButton = document.getElementById("send")
 let RandomButton = document.getElementById("randomize")
 let PFPImage = document.getElementById("pfp")
 
 let defaultPFPs = ["https://danilionn.github.io/danis-bot-website/assets/images/webhook-pfps/discordblue.png", "https://danilionn.github.io/danis-bot-website/assets/images/webhook-pfps/discordgreen.png", "https://danilionn.github.io/danis-bot-website/assets/images/webhook-pfps/discordgrey.png", "https://danilionn.github.io/danis-bot-website/assets/images/webhook-pfps/discordred.png", "https://danilionn.github.io/danis-bot-website/assets/images/webhook-pfps/discordyellow.png"]
-
 let customPFPs = ["https://better-default-discord.netlify.app/Icons/Solid-Red.png", "https://better-default-discord.netlify.app/Icons/Solid-Orange.png", "https://better-default-discord.netlify.app/Icons/Solid-Yellow.png", "https://better-default-discord.netlify.app/Icons/Solid-Green.png", "https://better-default-discord.netlify.app/Icons/Solid-Indigo.png", "https://better-default-discord.netlify.app/Icons/Solid-Blue.png", "https://better-default-discord.netlify.app/Icons/Solid-Violet.png", "https://better-default-discord.netlify.app/Icons/Solid-Pink.png", "https://better-default-discord.netlify.app/Icons/Solid-Black.png", "https://better-default-discord.netlify.app/Icons/Solid-Gray.png", "https://better-default-discord.netlify.app/Icons/Pastel-Red.png", "https://better-default-discord.netlify.app/Icons/Pastel-Orange.png", "https://better-default-discord.netlify.app/Icons/Pastel-Yellow.png", "https://better-default-discord.netlify.app/Icons/Pastel-Green.png", "https://better-default-discord.netlify.app/Icons/Pastel-Indigo.png", "https://better-default-discord.netlify.app/Icons/Pastel-Blue.png", "https://better-default-discord.netlify.app/Icons/Pastel-Violet.png", "https://better-default-discord.netlify.app/Icons/Pastel-Pink.png", "https://better-default-discord.netlify.app/Icons/Pastel-Black.png", "https://better-default-discord.netlify.app/Icons/Pastel-Gray.png", "https://better-default-discord.netlify.app/Icons/Gradient-Red.png", "https://better-default-discord.netlify.app/Icons/Gradient-Orange.png", "https://better-default-discord.netlify.app/Icons/Gradient-Yellow.png", "https://better-default-discord.netlify.app/Icons/Gradient-Green.png", "https://better-default-discord.netlify.app/Icons/Gradient-Indigo.png", "https://better-default-discord.netlify.app/Icons/Gradient-Blue.png", "https://better-default-discord.netlify.app/Icons/Gradient-Violet.png", "https://better-default-discord.netlify.app/Icons/Gradient-Pink.png", "https://better-default-discord.netlify.app/Icons/Gradient-Black.png", "https://better-default-discord.netlify.app/Icons/Gradient-Gray.png"]
 
 let pfpURL
-
 let WebhookName
 let WebhookURL
+
+let messageMaxLength = 2000;
+let messageWarningLength = 1750;
 
 URLInput.addEventListener("change", () => {
     WebhookURL = URLInput.value;
@@ -22,6 +24,18 @@ URLInput.addEventListener("change", () => {
 NameInput.addEventListener("change", () => {
     WebhookName = NameInput.value;
     localStorage.setItem("WebhookName", NameInput.value);
+})
+
+MessageInput.addEventListener("input", () => {
+
+    let len = MessageInput.value.length;
+
+    if (len < messageWarningLength) {
+        MessageInputLabel.innerHTML = "message";
+    } else {
+        MessageInputLabel.innerHTML = `message (${messageMaxLength - len})`;
+    }
+
 })
 
 function randomizePFP() {
