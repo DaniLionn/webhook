@@ -27,7 +27,7 @@ function init() {
     PFPImage.src = pfpURL
     
     NameInput.value = "";
-    URLInput.value = "";
+    //URLInput.value = "";
     MessageInput.value = "";
     
 }
