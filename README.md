@@ -1,2 +1,2 @@
 # webhook
-simple html client for sending messages using discord webhooks
+simple html + javascript client for sending messages using discord webhooks
